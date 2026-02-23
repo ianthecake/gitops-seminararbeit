@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
   - namespace-platform.yaml
-  - hello-gitops.yaml
+  - hello.yaml
   - apps/postgres-app.yaml
   # später:
   # - apps/minio-app.yaml
