@@ -33,6 +33,6 @@ spec:
       helm:
         valueFiles:
           - $values/values/dev/postgres-values.yaml
-    - repoURL:https: //github.com/ianthecake/gitops-seminararbeit.git
+    - repoURL: https://github.com/ianthecake/gitops-seminararbeit.git
       targetRevision: main
       ref: values
