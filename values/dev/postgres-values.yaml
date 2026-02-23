@@ -1,0 +1,14 @@
+auth:
+  username: airflow
+  password: airflowpw
+  database: airflow
+
+primary:
+  persistence:
+    enabled: true
+    size: 1Gi
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi

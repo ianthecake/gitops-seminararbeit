@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres-dev
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: postgresql
+    targetRevision: 15.*
+    helm:
+      valueFiles:
+        - $values/values/dev/postgres-values.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: platform
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+
+  # Das ist wichtig: wir nutzen ein zweites Repo als "values source" – nämlich DEIN Repo
+  sources:
+    - repoURL: https://charts.bitnami.com/bitnami
+      chart: postgresql
+      targetRevision: 15.*
+      helm:
+        valueFiles:
+          - $values/values/dev/postgres-values.yaml
+    - repoURL:https: //github.com/ianthecake/gitops-seminararbeit.git
+      targetRevision: main
+      ref: values
